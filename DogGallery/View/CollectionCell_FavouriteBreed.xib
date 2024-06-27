@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionCell_FavouriteBreed" customModule="DogGallery" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZJn-ka-HeB">
+                        <rect key="frame" x="10" y="10" width="180" height="180"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vB-Pd-BaQ">
+                        <rect key="frame" x="155" y="10" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="ZmV-bi-F0s"/>
+                            <constraint firstAttribute="height" constant="35" id="h2t-Kc-Cve"/>
+                        </constraints>
+                        <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                        <connections>
+                            <action selector="action_FavouriteDog:" destination="gTV-IL-0wX" eventType="touchUpInside" id="oUb-uA-xro"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ZJn-ka-HeB" secondAttribute="bottom" constant="10" id="OXb-qg-5dW"/>
+                <constraint firstItem="ZJn-ka-HeB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="SYU-wH-cWT"/>
+                <constraint firstItem="9vB-Pd-BaQ" firstAttribute="trailing" secondItem="ZJn-ka-HeB" secondAttribute="trailing" id="Vef-a1-QRp"/>
+                <constraint firstAttribute="trailing" secondItem="ZJn-ka-HeB" secondAttribute="trailing" constant="10" id="asa-8Z-nxt"/>
+                <constraint firstItem="9vB-Pd-BaQ" firstAttribute="top" secondItem="ZJn-ka-HeB" secondAttribute="top" id="gQh-Jy-8ll"/>
+                <constraint firstItem="ZJn-ka-HeB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="uYI-kd-kiZ"/>
+            </constraints>
+            <size key="customSize" width="194" height="171"/>
+            <connections>
+                <outlet property="dogImage" destination="ZJn-ka-HeB" id="RT1-D3-mPo"/>
+                <outlet property="favouriteDogBtn" destination="9vB-Pd-BaQ" id="iKH-eT-Vvg"/>
+            </connections>
+            <point key="canvasLocation" x="248.85496183206106" y="42.605633802816904"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+    </resources>
+</document>
