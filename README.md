@@ -16,3 +16,5 @@ The following features should be included:
 
 
 ![image](https://github.com/sahil-kamboj/DogGallery/assets/40351514/73d87401-7da0-42a4-bf2d-9a9b79d66f61)
+
+![Dog Gallery - Screenshot chart](https://github.com/user-attachments/assets/e21f5b55-0128-432f-8df3-a45dc790169a)
