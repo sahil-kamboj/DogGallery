@@ -12,7 +12,7 @@ class FavouriteBreedViewController: UIViewController {
 	@IBOutlet weak var favouriteCollectionView: UICollectionView!
 	
 	var viewModel = AllBreedsViewModel()
-	var dogBreeds: [String: [String]] = [:]
+//	var dogBreeds: [String: [String]] = [:]
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,10 @@ class FavouriteBreedViewController: UIViewController {
 		self.title = "Favourite Pictures"
 		self.setupScreenAndCollectionView()
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		getDogBreedList()
+	}
 	
 	func setupScreenAndCollectionView() {
 		self.favouriteCollectionView.delegate = self
@@ -32,14 +36,13 @@ class FavouriteBreedViewController: UIViewController {
 	}
 	
 	func getDogBreedList() {
-		
+		self.viewModel.favouriteDogList = [:]
 		for dog in self.viewModel.favouriteDogImages {
 			if let breedName = dog.dogBreedName, let dogImage = dog.dogImageURL {
-				if dogBreeds.keys.contains(breedName) {
-					dogBreeds[breedName]?.append(dogImage)
-				}
-				else {
-					dogBreeds[breedName] = [dogImage]
+				if self.viewModel.favouriteDogList.keys.contains(breedName) {
+					self.viewModel.favouriteDogList[breedName]?.append(dogImage)
+				} else {
+					self.viewModel.favouriteDogList[breedName] = [dogImage]
 				}
 			}
 		}
@@ -50,35 +53,30 @@ class FavouriteBreedViewController: UIViewController {
 		self.navigationController?.popViewController(animated: true)
 	}
 	
-	func checkFavouriteDog(_ input: String) {
-		if viewModel.favouriteDogImages.contains(where: { $0.dogImageURL == input }) {
-			self.viewModel.favouriteDogImages.removeAll(where: { $0.dogImageURL == input })
-		}
-		self.favouriteCollectionView.reloadData()
-		print("Favourite Dogs: ", self.viewModel.favouriteDogImages)
+	func openFullImage(_ name: String, image: String) {
+		guard let VC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "FullImageViewController") as? FullImageViewController else { return }
+		VC.dogImageURL = image
+		VC.dogBreedName = name
+		VC.viewModel = self.viewModel
+		self.navigationController?.pushViewController(VC, animated: false)
 	}
-    
 }
 
 extension FavouriteBreedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
-		return dogBreeds.keys.count
+		return self.viewModel.favouriteDogList.keys.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		if kind == UICollectionView.elementKindSectionHeader {
 			let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
 			headerView.backgroundColor = .clear
-			
-				// Remove any existing subviews
 			for subview in headerView.subviews {
 				subview.removeFromSuperview()
 			}
-			
-				// Add a label to the header view
 			let label = UILabel(frame: headerView.bounds)
-			label.text = Array(dogBreeds.keys)[indexPath.section]
+			label.text = Array(self.viewModel.favouriteDogList.keys.sorted())[indexPath.section].capitalized
 			label.textAlignment = .center
 			
 			label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -94,16 +92,21 @@ extension FavouriteBreedViewController: UICollectionViewDelegate, UICollectionVi
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return dogBreeds[Array(dogBreeds.keys)[section]]?.count ?? 0//self.viewModel.favouriteDogImages.count
+		return self.viewModel.favouriteDogList[Array(self.viewModel.favouriteDogList.keys.sorted())[section]]?.count ?? 0
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell_FavouriteBreed.identifier, for: indexPath) as? CollectionCell_FavouriteBreed else { return UICollectionViewCell() }
-		let dogBreedURL = dogBreeds[Array(dogBreeds.keys)[indexPath.section]]?[indexPath.row]//self.viewModel.favouriteDogImages[indexPath.row].dogImageURL
+		let dogBreedURL = self.viewModel.favouriteDogList[Array(self.viewModel.favouriteDogList.keys.sorted())[indexPath.section]]?[indexPath.row]
 		cell.dogImage.sd_setImage(with: URL(string: dogBreedURL ?? ""), placeholderImage: UIImage(systemName: "dog.fill"))
 		cell.favouriteDogBtn.isFavourite(true)
+		cell.openImage = {
+			self.openFullImage(Array(self.viewModel.favouriteDogList.keys.sorted())[indexPath.section], image: dogBreedURL ?? "")
+		}
 		cell.toggleFavouriteDog = {
-			self.checkFavouriteDog(dogBreedURL ?? "")
+			self.viewModel.checkFavouriteDog(Array(self.viewModel.favouriteDogList.keys.sorted())[indexPath.section], dogImage: dogBreedURL ?? "") {
+				self.getDogBreedList()
+			}
 		}
 		return cell
 	}

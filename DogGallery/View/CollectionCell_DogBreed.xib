@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionCell_DogBreed" customModule="DogGallery" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVT-fv-3sB">
+                        <rect key="frame" x="5" y="5" width="190" height="190"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="guS-LX-Oy6">
+                                <rect key="frame" x="10" y="10" width="170" height="141.66666666666666"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="guS-LX-Oy6" secondAttribute="height" multiplier="1.2:1" id="kvf-FA-2W0"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSs-iZ-2JF">
+                                <rect key="frame" x="10" y="156.66666666666666" width="170" height="28.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dSs-iZ-2JF" firstAttribute="top" secondItem="guS-LX-Oy6" secondAttribute="bottom" constant="5" id="8UB-Ey-Yhb"/>
+                            <constraint firstItem="guS-LX-Oy6" firstAttribute="leading" secondItem="WVT-fv-3sB" secondAttribute="leading" constant="10" id="91a-tI-jfL"/>
+                            <constraint firstItem="dSs-iZ-2JF" firstAttribute="centerX" secondItem="guS-LX-Oy6" secondAttribute="centerX" id="Jky-Sb-VgX"/>
+                            <constraint firstAttribute="bottom" secondItem="dSs-iZ-2JF" secondAttribute="bottom" constant="5" id="g2Q-J9-ZgZ"/>
+                            <constraint firstAttribute="trailing" secondItem="guS-LX-Oy6" secondAttribute="trailing" constant="10" id="nVD-6W-Nve"/>
+                            <constraint firstItem="dSs-iZ-2JF" firstAttribute="width" secondItem="guS-LX-Oy6" secondAttribute="width" id="wgE-B6-u63"/>
+                            <constraint firstItem="guS-LX-Oy6" firstAttribute="top" secondItem="WVT-fv-3sB" secondAttribute="top" constant="10" id="yf7-GE-i2k"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="WVT-fv-3sB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="9la-hh-zAx"/>
+                <constraint firstAttribute="trailing" secondItem="WVT-fv-3sB" secondAttribute="trailing" constant="5" id="Q4z-lT-idc"/>
+                <constraint firstAttribute="bottom" secondItem="WVT-fv-3sB" secondAttribute="bottom" constant="5" id="eMw-4t-Dxd"/>
+                <constraint firstItem="WVT-fv-3sB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="tgb-IL-Dbq"/>
+            </constraints>
+            <size key="customSize" width="188" height="189"/>
+            <connections>
+                <outlet property="dogBreedName" destination="dSs-iZ-2JF" id="Cdp-Kp-9IX"/>
+                <outlet property="dogImage" destination="guS-LX-Oy6" id="pii-Oa-u3r"/>
+            </connections>
+            <point key="canvasLocation" x="244.27480916030532" y="48.591549295774648"/>
+        </collectionViewCell>
+    </objects>
+</document>

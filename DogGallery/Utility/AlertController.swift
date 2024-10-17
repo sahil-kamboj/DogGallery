@@ -26,9 +26,11 @@ class AlertHelper {
 		}
 	}
 	
-	static func infoAlert(_ title: String?, message: String?) {
+	static func infoAlert(_ title: String?, message: String?, completion: (() -> Void)? = nil) {
 		DispatchQueue.main.async {
-			AlertHelper.showAlert(title: title, message: message)
+			AlertHelper.showAlert(title: title, message: message) {
+				completion?()
+			}
 		}
 	}
 }

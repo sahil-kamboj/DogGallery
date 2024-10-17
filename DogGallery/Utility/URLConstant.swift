@@ -9,7 +9,11 @@ import Foundation
 
 struct AppURL {
 	
-	static var getAllBreeds = "https://dog.ceo/api/breeds/list/all"
+	static let baseURL = "https://dog.ceo/api"
 	
-	static var getBreedImages = "https://dog.ceo/api/breed/{BREED_NAME}/images{IMAGE_NUMBER}"// /random/1
+	static var getAllBreeds = "\(baseURL)/breeds/list/all"
+	
+	static func getBreedImages(_ breedName: String, image: String) -> String {
+		return "\(baseURL)/breed/\(breedName)/images\(image)"
+	}
 }

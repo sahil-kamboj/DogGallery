@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DogBreedRepository {
+public class DogBreedRepository {
 	
 	func fetchDogBreedList(completion: @escaping (Result<DogBreeds, APIError>) -> Void) {
 		
@@ -26,17 +26,16 @@ class DogBreedRepository {
 	
 	func fetchDogBreedImages(breed: String, imageNumber: String, completion: @escaping (Result<DogBreedImages, APIError>) -> Void) {
 		
-		let endPoint1 = AppURL.getBreedImages.replacingOccurrences(of: "{BREED_NAME}", with: breed)
-		let endPoint2 = endPoint1.replacingOccurrences(of: "{IMAGE_NUMBER}", with: imageNumber)
-		let getRequest = GetRequest<DogBreedImages>(endpoint: endPoint2)
+		let endPoint = AppURL.getBreedImages(breed, image: imageNumber)
+		let getRequest = GetRequest<DogBreedImages>(endpoint: endPoint)
 		
 		NetworkRequest.request(getRequest) { result in
 			switch result {
-				case .success(let success):
-					completion(.success(success))
-					
-				case .failure(let failure):
-					completion(.failure(failure))
+			case .success(let success):
+				completion(.success(success))
+				
+			case .failure(let failure):
+				completion(.failure(failure))
 			}
 		}
 	}
